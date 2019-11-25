@@ -1,29 +1,29 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addToDo } from "./actions";
-import { selectorToDoList } from "./selectors";
+import { Home } from "./components/home";
+import { List } from "./components/list";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const App: React.FC = () => {
-  const [description, setDescription] = useState("");
-
-  const suca = (event: any) => {
-    setDescription(event.target.value);
-  };
-
-  const dispatch = useDispatch();
-
-  const onClickDispatch = () => {
-    dispatch(addToDo(description));
-  };
-
-  const list = useSelector(selectorToDoList);
-
   return (
-    <div>
-      <h1> To do list </h1>
-      <input type="text" onChange={suca} value={description} />
-      <button onClick={onClickDispatch}>Aggiungi</button>
-    </div>
+    <Router>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/list">List</Link>
+        </li>
+      </ul>
+
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/list">
+          <List />
+        </Route>
+      </Switch>
+    </Router>
   );
 };
 

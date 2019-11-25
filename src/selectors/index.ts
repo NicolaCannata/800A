@@ -5,5 +5,5 @@ const getState = (Store: any) => Store;
 
 export const selectorToDoList = createSelector(
   getState,
-  (Store): any => Store.list
+  (Store): any => Store.list || []
 );
