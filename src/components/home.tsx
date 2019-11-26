@@ -12,7 +12,8 @@ export const Home = () => {
   const dispatch = useDispatch();
 
   const onClickDispatch = () => {
-    dispatch(addToDo(description));
+    dispatch(addToDo({ description }));
+    setDescription("");
   };
 
   return (

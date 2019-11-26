@@ -6,7 +6,7 @@ export const addToDo = (description: any) => ({
   payload: description
 });
 
-export const removeToDo = (id: any) => ({
+export const removeToDo = (rmToDo: any) => ({
   type: REMOVE_TO_DO,
-  payload: id
+  payload: rmToDo
 });

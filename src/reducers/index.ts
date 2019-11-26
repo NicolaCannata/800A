@@ -2,7 +2,7 @@ import { ADD_TO_DO, REMOVE_TO_DO } from "../constants/actions";
 import { ToDoList } from "../Store";
 
 export const reducer = (Store: ToDoList = {}, action: any) => {
-  const prevLst = Store.list || [];
+  let prevLst = Store.list || [];
 
   switch (action.type) {
     case ADD_TO_DO:
@@ -12,9 +12,12 @@ export const reducer = (Store: ToDoList = {}, action: any) => {
       };
     case REMOVE_TO_DO:
       return {
-        ...Store
+        ...Store,
+        list: prevLst.filter(
+          //@ts-ignore
+          (rmToDo: any) => prevLst.description !== action.rmToDo
+        )
       };
-    default:
-      return { ...Store };
   }
+  return { ...Store };
 };
